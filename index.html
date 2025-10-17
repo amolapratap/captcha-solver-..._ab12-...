@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captcha Solver</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Captcha Solver</h1>
+    <div id="captcha-container"></div>
+    <div id="solution-container"></div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const captchaUrl = urlParams.get('url') || 'https://c22blog.wordpress.com/wp-content/uploads/2010/10/input-black.gif';
+        $('#captcha-container').html(`<img src='${captchaUrl}' alt='Captcha' />`);
+
+        // Function to solve the captcha
+        function solveCaptcha(imageUrl) {
+            // Here you would implement the captcha solving logic
+            // Placeholder - Example simple solution
+            const simulatedSolution = 'solved-text'; // Replace with actual logic
+            return simulatedSolution;
+        }
+
+        setTimeout(() => {
+            const solvedText = solveCaptcha(captchaUrl);
+            $('#solution-container').html(`<h2>Solved Captcha Text: ${solvedText}</h2>`);
+            // Notify callback URL
+            $.post('https://example.com/notify', { solvedText });
+        }, 15000); // Display solution in 15 seconds
+    </script>
+</body>
+</html>
