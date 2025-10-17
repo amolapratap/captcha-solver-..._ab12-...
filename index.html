@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captcha Solver</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        img { max-width: 100%; height: auto; }
+        .captcha-container { margin-bottom: 20px; }
+        .result { margin-top: 20px; font-size: 24px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Captcha Solver</h1>
+    <div class="captcha-container">
+        <img id="captcha-image" src="" alt="Captcha Image">
+        <div class="result" id="captcha-result"></div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const captchaUrl = urlParams.get('url');
+
+        if (captchaUrl) {
+            document.getElementById('captcha-image').src = captchaUrl;
+            setTimeout(() => solveCaptcha(captchaUrl), 15000);
+        } else {
+            document.getElementById('captcha-result').textContent = 'No captcha URL provided!';
+        }
+
+        async function solveCaptcha(url) {
+            // Here, we would normally call an API to solve the captcha.
+            // For demonstration purposes, we'll simulate a solved captcha text:
+            const simulatedResult = 'SOLVED_TEXT'; 
+            document.getElementById('captcha-result').textContent = simulatedResult;
+
+            // Notify evaluation callback
+            await fetch('https://example.com/notify', { method: 'POST', body: JSON.stringify({ result: simulatedResult }) });
+        }
+    </script>
+</body>
+</html>
