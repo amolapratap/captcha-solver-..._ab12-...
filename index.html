@@ -1,47 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Captcha Solver</title>
     <style>
-        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; }
-        img { margin: 20px 0; }
-        .solved-text { margin-top: 20px; font-weight: bold; }
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        img { max-width: 300px; }
     </style>
 </head>
 <body>
     <h1>Captcha Solver</h1>
     <div id="captcha-container"></div>
-    <div class="solved-text" id="solved-text"></div>
+    <div id="solved-text" style="font-weight: bold; margin-top: 20px;"></div>
     <script>
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
+        const params = new URLSearchParams(window.location.search);
+        const captchaURL = params.get('url');
+        const callbackURL = params.get('callback');
 
-        const captchaUrl = getQueryParam('url');
-        const captchaContainer = document.getElementById('captcha-container');
-        const solvedTextElement = document.getElementById('solved-text');
-
-        if(captchaUrl) {
-            const img = document.createElement('img');
-            img.src = captchaUrl;
-            img.alt = 'Captcha Image';
-            captchaContainer.appendChild(img);
-
-            // Simulating captcha solving
+        if (captchaURL) {
+            // Display the captcha image
+            const captchaContainer = document.getElementById('captcha-container');
+            captchaContainer.innerHTML = `<img src="${captchaURL}" alt="Captcha Image">`;
+            
+            // Simulate solving the captcha after 15 seconds
             setTimeout(() => {
-                const solvedText = 'Simulated Text'; // Replace with actual text recognition logic
-                solvedTextElement.textContent = `Solved Captcha Text: ${solvedText}`;
-                // Send solved text to a callback URL if specified
-                const callbackUrl = getQueryParam('callback');
-                if (callbackUrl) {
-                    fetch(callbackUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ solvedText }) });
+                // Simulated solved text (replace with actual solving logic)
+                const solvedText = 'ABC123'; // Example solved text
+                document.getElementById('solved-text').innerText = `Solved Captcha: ${solvedText}`;
+                
+                // Notify callback URL if provided
+                if (callbackURL) {
+                    fetch(callbackURL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ solvedText }),
+                    });
                 }
             }, 15000);
         } else {
-            captchaContainer.textContent = 'No captcha URL provided.';
+            document.getElementById('captcha-container').innerText = 'No captcha URL provided.';
         }
     </script>
 </body>
