@@ -13,7 +13,9 @@ To use the captcha solver, open the app with a URL parameter, e.g.:
 `index.html?url=https://c22blog.wordpress.com/wp-content/uploads/2010/10/input-black.gif`
 
 ### Example Callback
-You can specify a callback URL to send the solved text. 
+You can specify a callback URL to send the solved text. For example:
+
+`index.html?url=https://c22blog.wordpress.com/wp-content/uploads/2010/10/input-black.gif&callback=https://example.com/callback`
 
 ## License 
 This project is licensed under the MIT License.
