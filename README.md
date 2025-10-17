@@ -5,7 +5,7 @@ This project is a simple web application that takes a captcha image URL as a que
 
 ## Features 
 - Display captcha request from URL 
-- Simulate the solving of the captcha with a random text for demonstration purposes
+- Simulate the solving of the captcha 
 - Notify a callback URL with the solved text 
 
 ## Usage 
