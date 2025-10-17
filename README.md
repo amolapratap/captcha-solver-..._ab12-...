@@ -16,5 +16,5 @@ To use the captcha solver, open the app with a URL parameter, e.g.:
 You can specify a callback URL to send the solved text by appending it as a `callback` parameter in the URL, e.g.: 
 `index.html?url=<captcha-url>&callback=<your-callback-url>`
 
-## License 
-This project is licensed under the MIT License.
+## Note
+Please ensure that the provided captcha URL is accessible.
