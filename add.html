@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Captcha</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Captcha Solver</title>
 </head>
 <body>
-    <h1>Add Captcha</h1>
-    <form action="#">
-        <input type="text" id="captcha-url" placeholder="Enter captcha image URL" />
-        <button type="submit">Submit</button>
-    </form>
+  <h1>Captcha Solver</h1>
+  <form id="captcha-form">
+    <label for="url">Captcha URL:</label>
+    <input type="text" id="url" name="url" value="https://c22blog.wordpress.com/wp-content/uploads/2010/10/input-black.gif" />
+    <button type="submit">Submit</button>
+  </form>
+  <div id="captcha-container" style="margin-top: 20px;"></div>
+  <div id="solved-captcha" style="margin-top: 20px;"></div>
+
+  <script>
+    document.getElementById('captcha-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const url = document.getElementById('url').value;
+      document.getElementById('captcha-container').innerHTML = `<img src="${url}" alt="Captcha Image" style="width:300px; height:auto;" />`;
+
+      // Simulate solving captcha after 15 seconds
+      setTimeout(function() {
+        const solvedText = "SOME SOLVED TEXT"; // Simulating solved text
+        document.getElementById('solved-captcha').innerText = `Solved Captcha: ${solvedText}`;
+
+        // Notify a callback or handle further actions here
+        // For example:
+        // fetch('https://your-callback-url.com', {
+        //   method: 'POST',
+        //   body: JSON.stringify({ solvedText }),
+        //   headers: { 'Content-Type': 'application/json' }
+        // });
+      }, 15000);
+    });
+  </script>
 </body>
 </html>
