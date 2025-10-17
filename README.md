@@ -1,0 +1,16 @@
+# Captcha Solver Project
+
+## Project Description  
+This project is a simple web application that takes a captcha image URL as a query parameter, displays the captcha, and simulates solving it within 15 seconds. The solved text is then displayed on the page and notified to a given callback URL.
+
+## Features  
+- Display captcha request from URL  
+- Simulate the solving of the captcha  
+- Notify a callback URL with the solved text  
+
+## Usage  
+To use the captcha solver, open the app with a URL parameter, e.g.:  
+`index.html?url=https://c22blog.wordpress.com/wp-content/uploads/2010/10/input-black.gif`
+
+## License  
+This project is licensed under the MIT License.
