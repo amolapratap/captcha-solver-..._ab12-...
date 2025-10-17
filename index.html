@@ -5,57 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Captcha Solver</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        img { max-width: 100%; height: auto; }
+        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; }
+        img { margin: 20px 0; }
+        .solved-text { margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
     <h1>Captcha Solver</h1>
     <div id="captcha-container"></div>
-    <h2 id="solved-text" style="display:none;"></h2>
+    <div class="solved-text" id="solved-text"></div>
     <script>
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
 
-        function displayCaptcha(url) {
-            const captchaContainer = document.getElementById('captcha-container');
-            if (url) {
-                const img = document.createElement('img');
-                img.src = url;
-                captchaContainer.appendChild(img);
-                simulateSolvingCaptcha(url);
-            } else {
-                captchaContainer.innerHTML = 'No captcha URL provided.';
-            }
-        }
-
-        function simulateSolvingCaptcha(url) {
-            setTimeout(() => {
-                const solvedText = '1234'; // Simulated solved text
-                displaySolvedText(solvedText);
-                notifyCallback(solvedText);
-            }, 15000); // 15 seconds
-        }
-
-        function displaySolvedText(solvedText) {
-            const solvedTextElement = document.getElementById('solved-text');
-            solvedTextElement.innerText = `Solved Captcha Text: ${solvedText}`;
-            solvedTextElement.style.display = 'block';
-        }
-
-        function notifyCallback(solvedText) {
-            const callbackUrl = 'https://example.com/callback'; // Replace with actual callback URL
-            fetch(callbackUrl, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ solvedText })
-            });
-        }
-
         const captchaUrl = getQueryParam('url');
-        displayCaptcha(captchaUrl);
+        const captchaContainer = document.getElementById('captcha-container');
+        const solvedTextElement = document.getElementById('solved-text');
+
+        if(captchaUrl) {
+            const img = document.createElement('img');
+            img.src = captchaUrl;
+            img.alt = 'Captcha Image';
+            captchaContainer.appendChild(img);
+
+            // Simulating captcha solving
+            setTimeout(() => {
+                const solvedText = 'Simulated Text'; // Replace with actual text recognition logic
+                solvedTextElement.textContent = `Solved Captcha Text: ${solvedText}`;
+                // Send solved text to a callback URL if specified
+                const callbackUrl = getQueryParam('callback');
+                if (callbackUrl) {
+                    fetch(callbackUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ solvedText }) });
+                }
+            }, 15000);
+        } else {
+            captchaContainer.textContent = 'No captcha URL provided.';
+        }
     </script>
 </body>
 </html>
