@@ -12,5 +12,8 @@ This project is a simple web application that takes a captcha image URL as a que
 To use the captcha solver, open the app with a URL parameter, e.g.: 
 `index.html?url=https://c22blog.wordpress.com/wp-content/uploads/2010/10/input-black.gif`
 
+### Example Callback
+You can specify a callback URL to send the solved text. 
+
 ## License 
 This project is licensed under the MIT License.
