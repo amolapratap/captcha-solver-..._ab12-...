@@ -1,0 +1,2 @@
+# Captcha Solver Web App
+This is a small single-page web application that solves captchas provided in an image URL. The application displays a nonce in the footer and automatically attempts to solve the captcha within 15 seconds.
