@@ -1,34 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Captcha Solver</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        img { max-width: 100%; height: auto; }
+    </style>
 </head>
 <body>
     <h1>Captcha Solver</h1>
     <div id="captcha-container"></div>
-    <div id="solution-container"></div>
+    <div id="solved-text" style="margin-top: 20px;"></div>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const captchaUrl = urlParams.get('url') || 'https://c22blog.wordpress.com/wp-content/uploads/2010/10/input-black.gif';
-        $('#captcha-container').html(`<img src='${captchaUrl}' alt='Captcha' />`);
-
-        // Function to solve the captcha
-        function solveCaptcha(imageUrl) {
-            // Here you would implement the captcha solving logic
-            // Placeholder - Example simple solution
-            const simulatedSolution = 'solved-text'; // Replace with actual logic
-            return simulatedSolution;
+        // Function to get URL parameters
+        function getParameterByName(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
         }
 
-        setTimeout(() => {
-            const solvedText = solveCaptcha(captchaUrl);
-            $('#solution-container').html(`<h2>Solved Captcha Text: ${solvedText}</h2>`);
-            // Notify callback URL
-            $.post('https://example.com/notify', { solvedText });
-        }, 15000); // Display solution in 15 seconds
+        // Displaying the captcha
+        const captchaUrl = getParameterByName('url');
+        const captchaContainer = document.getElementById('captcha-container');
+        if (captchaUrl) {
+            const img = new Image();
+            img.src = captchaUrl;
+            img.alt = 'Captcha Image';
+            captchaContainer.appendChild(img);
+
+            // Simulate solving the captcha after 15 seconds
+            setTimeout(() => {
+                const solvedText = '1234';  // Simulation of solved text
+                document.getElementById('solved-text').innerText = 'Solved Captcha Text: ' + solvedText;
+                // Here you would typically send the solved text to a callback URL
+            }, 15000);
+        } else {
+            captchaContainer.innerText = 'No captcha URL provided';
+        }
     </script>
 </body>
 </html>
