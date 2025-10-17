@@ -1,12 +1,12 @@
 # Captcha Solver Project
 
 ## Project Description 
-This project is a simple web application that takes a captcha image URL as a query parameter, displays the captcha, and simulates solving it within 15 seconds. The solved text is then displayed on the page and notified to a given callback URL.
+This project is a simple web application that takes a captcha image URL as a query parameter, displays the captcha, and simulates solving it within 15 seconds. The solved text is then displayed on the page and sent to a specified callback URL.
 
 ## Features 
-- Display captcha request from URL 
-- Simulate the solving of the captcha 
-- Notify a callback URL with the solved text 
+- Display captcha from URL
+- Simulate the solving of the captcha
+- Notify a callback URL with the solved text
 
 ## Usage 
 To use the captcha solver, open the app with a URL parameter, e.g.: 
